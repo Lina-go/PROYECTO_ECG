@@ -1,10 +1,10 @@
-
-#include <WiFi.h>
-#include <ESPAsyncWebServer.h>
-#include <SPIFFS.h>
+#ifdef ESP32
+  #include <WiFi.h>
+  #include <ESPAsyncWebServer.h>
+  #include <SPIFFS.h>
 #else
   #include <Arduino.h>
-  #include <ESP8266wifi.h>
+  #include <ESP8266WiFi.h>
   #include <Hash.h>
   #include <ESPAsyncTCP.h>
   #include <ESPAsyncWebServer.h>
@@ -12,22 +12,23 @@
 #endif
 #include <Wire.h>
 
+// Replace with your network credentials
+const char* ssid = "iPhone de Veronica";
+const char* password = "987654321";
 
-const chas*ssid = "ID_wifi"
-const chas*password = "password"
-
+// Create AsyncWebServer object on port 80
 AsyncWebServer server (80);
-String  analog (){
+String  readNodeMCU (){
 
-  float analog_Read = analogRead (A0);
-  if (isnan(analog_read)){
-    Serial.println("Failed to read");
+  float t = analogRead (A0);
+  if (isnan(t)){
+    Serial.println("Failed to read from sensor!");
     return "";
   }
   else{
     
-    Serial.println(analog_read);
-    return String(analog_read);
+    Serial.println(t);
+    return String(t);
   }
     
 }
@@ -35,7 +36,7 @@ String  analog (){
 
 
 void setup() {
-
+  // Serial port for debugging purposes
   Serial.begin(115200);
 
   //inicializando SPIFFS
@@ -46,7 +47,6 @@ void setup() {
   }
 
   //Conexión wifi
-
   WiFi.begin(ssid, password);
   while (WiFi.status() != WL_CONNECTED){
 
@@ -55,13 +55,12 @@ void setup() {
   }
 
   //Print ESP8266 IP
-
   Serial.println(WiFi.localIP());
 
   server.on("/", HTTP_GET, [](AsyncWebServerRequest *request){
-    request->send(SPIFFS, "/Nombre.html");});
-  server.on("/FuncionHTML", HTTP_GET, [](AsyncWebServerRequest *request){
-    request->send_P(200, "text/plain", analog().c_str());});
+    request->send(SPIFFS, "/index jose 1.html");});
+  server.on("/EEG", HTTP_GET, [](AsyncWebServerRequest *request){
+    request->send_P(200, "text/plain", readNodeMCU().c_str());});
 
   server.begin();
   

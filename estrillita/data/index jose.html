@@ -1,0 +1,58 @@
+﻿<!DOCTYPE HTML><html>
+
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <title>Proyecto ECG</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <link rel="icon" bref="data:,">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel='stylesheet' type='text/css' media='screen' href='colores.css'>
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+</head>
+<body>
+  <nav class="navbar navbar-dark bg-primary">
+    <a class="navbar-brand mb-0 h1">
+      <img src="https://cdn-icons-png.flaticon.com/512/3233/3233011.png" width="30" height="30" class="d-inline-block align-top" alt="">
+      ECG PROYECTO
+    </a>
+</nav>
+<br>
+<br>
+
+<div id="chartECG" class="container"></div>
+
+  
+</body>
+
+
+<script>
+
+var chartEEG = new Highcharts.Chart({
+  chart:{ renderTo : 'chartECG' },
+  title: { text: 'ECG' },
+  series: [{
+    data: []
+  }],
+});
+
+
+setInterval(function ( ) {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      var x = (new Date()).getTime(),
+          y = parseFloat(this.responseText);
+
+      if(chartT.series[0].data.length > 100) {
+        chartT.series[0].addPoint([x, y], true, true, true);
+      } else {
+        chartT.series[0].addPoint([x, y], true, false, true);
+      }
+    }
+  };
+  xhttp.open("GET", "/EEG", true);
+  xhttp.send();
+}, 100 ) ;
+</script>
+</html>
