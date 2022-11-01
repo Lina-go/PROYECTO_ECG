@@ -1,0 +1,104 @@
+<!DOCTYPE html><html>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Taller Typescript 1</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script type="module" src='./scripts/main.js'></script>
+    <link rel="icon" bref="data:,">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel='stylesheet' type='text/css' media='screen' href='hoja.css'>
+</head>
+
+<body>
+    <nav class="navbar navbar-dark bg-primary">
+        <a class="navbar-brand mb-0 h1">
+          <img src="https://cdn-icons-png.flaticon.com/512/3233/3233011.png" width="30" height="30" class="d-inline-block align-top" alt="">
+          ECG PROYECTO
+        </a>
+    </nav>
+    <div id="testchart" class="container"></div>
+    <br/>
+    
+</body>
+
+<script>
+    
+    function getData(n) {
+    var arr = [],
+        i,
+        x,
+        a,
+        b,
+        c,
+        spike;
+    for (
+        i = 0, x = Date.UTC(new Date().getUTCFullYear(), 0, 1) - n * 36e5;
+        i < n;
+        i = i + 1, x = x + 36e5
+    ) {
+        if (i % 100 === 0) {
+            a = 2 * Math.random();
+        }
+        if (i % 1000 === 0) {
+            b = 2 * Math.random();
+        }
+        if (i % 10000 === 0) {
+            c = 2 * Math.random();
+        }
+        if (i % 50000 === 0) {
+            spike = 10;
+        } else {
+            spike = 0;
+        }
+        arr.push([
+            x,
+            2 * Math.sin(i / 100) + a + b + c + spike + Math.random()
+        ]);
+    }
+    return arr;
+}
+var n = 500000,
+    data = getData(n);
+
+
+console.time('line');
+Highcharts.chart('testchart', {
+
+    chart: {
+        zoomType: 'x'
+    },
+
+    title: {
+        text: 'Highcharts drawing ' + n + ' points'
+    },
+
+    subtitle: {
+        text: 'Using the Boost module'
+    },
+
+    accessibility: {
+        screenReaderSection: {
+            beforeChartFormat: '<{headingTagName}>{chartTitle}</{headingTagName}><div>{chartSubtitle}</div><div>{chartLongdesc}</div><div>{xAxisDescription}</div><div>{yAxisDescription}</div>'
+        }
+    },
+
+    tooltip: {
+        valueDecimals: 2
+    },
+
+    xAxis: {
+        type: 'datetime'
+    },
+
+    series: [{
+        data: data,
+        lineWidth: 0.5,
+        name: 'Hourly data points'
+    }]
+
+});
+console.timeEnd('line');
+</script>
+</html>
