@@ -16,6 +16,7 @@ copies or substantial portions of the Software. -->
   <script src="https://code.highcharts.com/highcharts.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  
 </head>
 <body>
   <nav class="navbar fixed-top navbar-dark bg-primary">
@@ -24,10 +25,15 @@ copies or substantial portions of the Software. -->
       ECG PROYECTO
     </a>
   </nav>
-  <br><br><br><br><br><br>
-  <div class="container justify-content-center">
+  <br><br><br>
+  
+  <div class="container-fluid">
     <div class ="row">
     <div id="chart-temperature" class="col-11"></div>
+  </div>
+  <h5>¿ Qué es la frecuencia cardiaca ?</h5>
+  <div class="callout">
+    <p>La frecuencia cardíaca en reposo normalmente oscila entre 60 y 100 latidos por minuto en un adulto sano en estado de reposo. La medición de la frecuencia cardíaca proporciona información importante sobre la salud de una persona.</p>
   </div>
   <nav class="navbar fixed-bottom navbar-dark bg-primary">
     <a class="navbar-brand mb-0 h1">
@@ -74,7 +80,7 @@ setInterval(function ( ) {
   };
   xhttp.open("GET", "/temperature", true);
   xhttp.send();
-}, 10 ) ;
+}, 50 ) ;
 
 
 </script>
