@@ -15,8 +15,8 @@
 #include <Wire.h>
 
 // Replace with your network credentials
-const char* ssid = "iPhone de Veronica";
-const char* password = "987654321";
+const char* ssid = "Pipe Jr";
+const char* password = "Messi700";
 
 // Create AsyncWebServer object on port 80
 AsyncWebServer server(80);
