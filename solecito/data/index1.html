@@ -16,21 +16,24 @@ copies or substantial portions of the Software. -->
   <script src="https://code.highcharts.com/highcharts.js"></script>
 </head>
 <body>
-  <nav class="navbar  navbar-dark bg-primary">
+  <nav class="navbar fixed-top navbar-dark bg-primary">
     <a class="navbar-brand mb-0 h1">
       <img src="https://cdn-icons-png.flaticon.com/512/3233/3233011.png" width="30" height="30" class="d-inline-block align-top" alt="">
       ECG PROYECTO
     </a>
   </nav>
-  <br>
-  <br>
-  <div id="chart-temperature" class="container"></div>
-
+  <br><br><br><br><br><br>
+  <div class="container-fluid">
+    <div class ="row">
+    <div id="chart-temperature" class="col-8"></div>
+  </div>
+  </div>
   <nav class="navbar fixed-bottom navbar-dark bg-primary">
     <a class="navbar-brand mb-0 h1">
-      <img src="https://educacion.uniandes.edu.co/sites/default/files/Uniandes.png" width="30" height="30" class="d-inline-block align-top" alt="">
+      <img src="https://educacion.uniandes.edu.co/sites/default/files/Uniandes.png" width="80" height="30" class="d-inline-block align-top" alt="">
     </a>
   </nav>
+
 </body>
 <script>
 
@@ -43,7 +46,7 @@ var chartT = new Highcharts.Chart({
     data: [1,2,1,12,21,21,21,12,12,12,1,2]
   }],
 
-  xAxis: { type: 'datetime',
+  xAxis: { type: 'time',
     dateTimeLabelFormats: { second: '%H:%M:%S' },
     title : {text:'Time'}
   },
@@ -70,7 +73,7 @@ setInterval(function ( ) {
   };
   xhttp.open("GET", "/temperature", true);
   xhttp.send();
-}, 100 ) ;
+}, 10 ) ;
 
 
 </script>
