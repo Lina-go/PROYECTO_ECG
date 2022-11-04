@@ -14,6 +14,8 @@ copies or substantial portions of the Software. -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel='stylesheet' type='text/css' media='screen' href='colores.css'>
   <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
   <nav class="navbar fixed-top navbar-dark bg-primary">
@@ -23,10 +25,9 @@ copies or substantial portions of the Software. -->
     </a>
   </nav>
   <br><br><br><br><br><br>
-  <div class="container-fluid">
+  <div class="container justify-content-center">
     <div class ="row">
-    <div id="chart-temperature" class="col-8"></div>
-  </div>
+    <div id="chart-temperature" class="col-11"></div>
   </div>
   <nav class="navbar fixed-bottom navbar-dark bg-primary">
     <a class="navbar-brand mb-0 h1">
@@ -45,9 +46,9 @@ var chartT = new Highcharts.Chart({
     lineWidth: 0.5,
     data: [1,2,1,12,21,21,21,12,12,12,1,2]
   }],
-
-  xAxis: { type: 'time',
-    dateTimeLabelFormats: { second: '%H:%M:%S' },
+  colors: ['#FF0000'],
+  xAxis: { type: 'datetime',
+    dateTimeLabelFormats: { second: '%H:%M:%S'},
     title : {text:'Time'}
   },
   yAxis: {
