@@ -3,7 +3,7 @@
 
 Este es un proyecto de IBIO de la clase de Señales e Instrumentación Biomédica que tiene como objetivo desarrollar un wearable para el monitoreo constante de la frecuencia cardiaca en pacientes mayores a 30 años que realicen algíun tipo de deporte. 
 
-
+Hola
 ## Authors
 
 - [@Lina Maria Gómez](https://www.github.com/octokatherine)
